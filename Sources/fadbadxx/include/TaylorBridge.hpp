@@ -29,6 +29,8 @@ public:
     
     unsigned int eval(const unsigned int& i);
     
+    void reset();
+    
 private:
     TDB m_taylorType;
 };
@@ -49,9 +51,23 @@ TaylorBridge BuildDivision(const TaylorBridge& lhs, const TaylorBridge& rhs);
 TaylorBridge BuildDivision(const TaylorBridge& lhs, const double& rhs);
 TaylorBridge BuildDivision(const double& lhs, const TaylorBridge& rhs);
 
+TaylorBridge BuildUnaryMinus(const TaylorBridge& value);
+TaylorBridge BuildUnaryPlus(const TaylorBridge& value);
+
+TaylorBridge pow(const TaylorBridge& value1, const TaylorBridge& value2);
+TaylorBridge pow(const double& value1, const TaylorBridge& value2);
+TaylorBridge pow(const TaylorBridge& value1, const double& value2);
+TaylorBridge square(const TaylorBridge& value);
 TaylorBridge sqrt(const TaylorBridge& value);
+TaylorBridge exp(const TaylorBridge& value);
+TaylorBridge log(const TaylorBridge& value);
 TaylorBridge sin(const TaylorBridge& value);
 TaylorBridge cos(const TaylorBridge& value);
+TaylorBridge tan(const TaylorBridge& value);
+TaylorBridge asin(const TaylorBridge& value);
+TaylorBridge acos(const TaylorBridge& value);
+TaylorBridge atan(const TaylorBridge& value);
+TaylorBridge differentiate(const TaylorBridge& value, const uint32_t& order);
 
 }
 

@@ -47,6 +47,11 @@ unsigned int TaylorBridge::eval(const unsigned int& i)
     return m_taylorType.eval(i);
 }
 
+void TaylorBridge::reset()
+{
+    m_taylorType.reset();
+}
+
 TaylorBridge BuildAddition(const TaylorBridge& lhs, const TaylorBridge& rhs)
 {
     auto result = lhs.getTaylorType()+rhs.getTaylorType();
@@ -119,9 +124,55 @@ TaylorBridge BuildDivision(const double& lhs, const TaylorBridge& rhs)
     return TaylorBridge(result);
 }
 
+TaylorBridge BuildUnaryMinus(const TaylorBridge& value)
+{
+    auto result = -(value.getTaylorType());
+    return result;
+}
+
+TaylorBridge BuildUnaryPlus(const TaylorBridge& value)
+{
+    auto result = +(value.getTaylorType());
+    return result;
+}
+
+TaylorBridge pow(const TaylorBridge& value1, const TaylorBridge& value2)
+{
+    auto result = fadbad::pow(value1.getTaylorType(), value2.getTaylorType());
+    return TaylorBridge(result);
+}
+
+TaylorBridge pow(const double& value1, const TaylorBridge& value2)
+{
+    auto result = fadbad::pow(value1, value2.getTaylorType());
+    return TaylorBridge(result);
+}
+
+TaylorBridge pow(const TaylorBridge& value1, const double& value2)
+{
+    auto result = fadbad::pow(value1.getTaylorType(), value2);
+    return TaylorBridge(result);
+}
+
+TaylorBridge square(const TaylorBridge& value)
+{
+    auto result = fadbad::sqr(value.getTaylorType());
+    return result;
+}
+
 TaylorBridge sqrt(const TaylorBridge& value)
 {
     return fadbad::sqrt(value.getTaylorType());
+}
+
+TaylorBridge exp(const TaylorBridge& value)
+{
+    return fadbad::exp(value.getTaylorType());
+}
+
+TaylorBridge log(const TaylorBridge& value)
+{
+    return fadbad::log(value.getTaylorType());
 }
 
 TaylorBridge sin(const TaylorBridge& value)
@@ -134,5 +185,31 @@ TaylorBridge cos(const TaylorBridge& value)
     return fadbad::cos(value.getTaylorType());
 }
 
+TaylorBridge tan(const TaylorBridge& value)
+{
+    return fadbad::tan(value.getTaylorType());
 }
+
+TaylorBridge asin(const TaylorBridge& value)
+{
+    return fadbad::asin(value.getTaylorType());
+}
+
+TaylorBridge acos(const TaylorBridge& value)
+{
+    return fadbad::acos(value.getTaylorType());
+}
+
+TaylorBridge atan(const TaylorBridge& value)
+{
+    return fadbad::atan(value.getTaylorType());
+}
+
+TaylorBridge differentiate(const TaylorBridge& value, const uint32_t& order)
+{
+    return fadbad::diff(value.getTaylorType(), static_cast<int>(order));
+}
+
+}
+
 }

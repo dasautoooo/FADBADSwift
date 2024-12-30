@@ -24,7 +24,9 @@ public class TaylorValue {
         taylorBridge.eval(UInt32(i))
     }
     
-    public func reset() {}
+    public func reset() {
+        taylorBridge.reset()
+    }
     
     // MARK: - Operator overloading
     
@@ -38,6 +40,8 @@ public class TaylorValue {
         }
         
     }
+    
+    // MARK: - Operator overloading: Binary
     
     static func + (lhs: TaylorValue, rhs: TaylorValue) -> TaylorValue {
         return TaylorValue(fadbad.bridge.BuildAddition(lhs.taylorBridge, rhs.taylorBridge))
@@ -63,8 +67,6 @@ public class TaylorValue {
         return TaylorValue(fadbad.bridge.BuildDivision(lhs, rhs.taylorBridge))
     }
     
-    // prefix -
-    
     static func * (lhs: TaylorValue, rhs: TaylorValue) -> TaylorValue {
         return TaylorValue(fadbad.bridge.BuildMultiplication(lhs.taylorBridge, rhs.taylorBridge))
     }
@@ -89,13 +91,70 @@ public class TaylorValue {
         return TaylorValue(fadbad.bridge.BuildDivision(lhs, rhs.taylorBridge))
     }
     
+    // MARK: - Operator overloading: Unary
+    
+    static prefix func - (value: TaylorValue) -> TaylorValue {
+        return TaylorValue(fadbad.bridge.BuildUnaryMinus(value.taylorBridge))
+    }
+    
+    static prefix func + (value: TaylorValue) -> TaylorValue {
+        return TaylorValue(fadbad.bridge.BuildUnaryPlus(value.taylorBridge))
+    }
+    
+}
+
+func pow(_ value1: TaylorValue, _ value2: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.pow(value1.taylorBridge, value2.taylorBridge))
+}
+
+func pow(_ value1: Double, _ value2: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.pow(value1, value2.taylorBridge))
+}
+
+func pow(_ value1: TaylorValue, _ value2: Double) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.pow(value1.taylorBridge, value2))
+}
+
+func square(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.square(value.taylorBridge))
+}
+
+func exp(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.exp(value.taylorBridge))
+}
+
+func log(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.log(value.taylorBridge))
 }
 
 func sqrt(_ value: TaylorValue) -> TaylorValue {
     return TaylorValue(fadbad.bridge.sqrt(value.taylorBridge))
 }
 
-
 func sin(_ value: TaylorValue) -> TaylorValue {
     return TaylorValue(fadbad.bridge.sin(value.taylorBridge))
+}
+
+func cos(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.cos(value.taylorBridge))
+}
+
+func tan(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.tan(value.taylorBridge))
+}
+
+func asin(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.asin(value.taylorBridge))
+}
+
+func acos(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.acos(value.taylorBridge))
+}
+
+func atan(_ value: TaylorValue) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.atan(value.taylorBridge))
+}
+
+func differentiate(_ value: TaylorValue, to order: UInt) -> TaylorValue {
+    return TaylorValue(fadbad.bridge.differentiate(value.taylorBridge, UInt32(order)))
 }
