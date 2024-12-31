@@ -57,11 +57,11 @@ This will include the `FADBADSwift` library in your project, giving you access t
 
 This example demonstrates the usage of `FADBADSwift` by computing the Taylor expansion of the function:
 
-\[
+$$
 f(x, y) = y \cdot \sqrt{x} + \sin(\sqrt{x})
-\]
+$$
 
-We calculate the Taylor coefficients of \( f(x, y) \) with respect to both \( x \) and \( y \).
+We calculate the Taylor coefficients of $`f(x, y)`$ with respect to both $`x`$ and $`y`$.
 
 ### Code Example
 
@@ -127,7 +127,7 @@ main()
 ### Explanation
 
 1. **Define the Function**:  
-   The function `funcExample` computes \( f(x, y) = y \cdot \sqrt{x} + \sin(\sqrt{x}) \). It takes two Taylor series variables as inputs and returns their computed result as a Taylor series.
+   The function `funcExample` computes $`f(x, y) = y \cdot \sqrt{x} + \sin(\sqrt{x})`$. It takes two Taylor series variables as inputs and returns their computed result as a Taylor series.
 
 2. **Independent Variables**:  
    The framework allows marking variables as independent by setting their first derivative coefficients to 1.  
@@ -136,7 +136,7 @@ main()
    y[1] = 1.0 // dy/dy = 1
    ```
 3. **Evaluate Taylor Coefficients**:  
-   The `evaluate(to:)` method calculates the coefficients of the Taylor series expansion of \( f(x, y) \) up to the specified order (10 in this example). These coefficients represent the derivatives of \( f(x, y) \) at the series' center.
+   The `evaluate(to:)` method calculates the coefficients of the Taylor series expansion of $`f(x, y)`$ up to the specified order (10 in this example). These coefficients represent the derivatives of $`f(x, y)`$ at the series' center.
 
    ```swift
    f.evaluate(to: 10)
@@ -148,13 +148,13 @@ main()
    f.reset() // Clear all computed coefficients
    ```
 5. **Change Independent Variable**:  
-   After resetting, you can switch the independent variable. Initially, `x` is the independent variable (\( dx/dx = 1 \)). By setting `y[1]` to 1, `y` is now marked as the independent variable (\( dy/dy = 1 \)).
+   After resetting, you can switch the independent variable. Initially, `x` is the independent variable $`\frac{dx}{dx} = 1`$. By setting `y[1]` to 1, `y` is now marked as the independent variable $`\frac{dy}{dy} = 1`$.
 
    ```swift
    y[1] = 1.0 // Set y as the independent variable
    ```
 6. **Print Results**:  
-   Access the Taylor coefficients using subscript syntax (e.g., `f[i]`), where \( i \) is the order of the derivative. Iterate through the coefficients and print them to verify the Taylor expansion.
+   Access the Taylor coefficients using subscript syntax (e.g., `f[i]`), where $`i`$ is the order of the derivative. Iterate through the coefficients and print them to verify the Taylor expansion.
 
    ```swift
    for i in 0...10 {
