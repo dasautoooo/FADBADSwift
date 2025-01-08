@@ -18,7 +18,7 @@ FDBADSwift brings the functionality of FADBAD++ into the Swift ecosystem, starti
 
 - [x] **Taylor Series Representation**: Represent functions as Taylor series with simple initialization.
 - [x] **Arithmetic Operations**: Support for `+`, `-`, `*`, `/` with Taylor series and constants.
-- [x] **Symbolic Differentiation**: Compute derivatives of Taylor series to any order.
+- [x] **Automatic Differentiation**: Compute derivatives of Taylor series to any order.
 - [x] **Swift and C++ Interoperability**: Seamlessly bridge the powerful `fadbad` C++ library to Swift.
 - [x] **Mathematical Functions**: Includes `sqrt`, `sin`, `cos`, `exp`, `log`, and more.
 - [x] **Subscript Access**: Easily access or set Taylor series coefficients with subscript syntax.
